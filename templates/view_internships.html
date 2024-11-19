@@ -4,35 +4,38 @@
     <title>View Internships</title>
 </head>
 <body>
-    <h1>Internship Records</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Intern Name</th>
-                <th>Company Name</th>
-                <th>Start Date</th>
-                <th>Mentor Name</th>
-                <th>Mentor Email</th>
-                <th>City</th>
-                <th>Stipend</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for internship in internships %}
-            <tr>
-                <td>{{ internship[0] }}</td>
-                <td>{{ internship[1] }}</td>
-                <td>{{ internship[2] }}</td>
-                <td>{{ internship[3] }}</td>
-                <td>{{ internship[4] }}</td>
-                <td>{{ internship[5] }}</td>
-                <td>{{ internship[6] }}</td>
-                <td>{{ internship[7] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="/">Back to Home</a>
+    <link rel="stylesheet" href="/static/view_interships.css">
+    <div class="container">
+        <h1>Internship Records</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Intern Name</th>
+                    <th>Company Name</th>
+                    <th>Start Date</th>
+                    <th>Mentor Name</th>
+                    <th>Mentor Email</th>
+                    <th>City</th>
+                    <th>Stipend</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for internship in internships %}
+                <tr>
+                    <td>{{ internship[0] }}</td>
+                    <td>{{ internship[1] }}</td>
+                    <td>{{ internship[2] }}</td>
+                    <td>{{ internship[3] }}</td>
+                    <td>{{ internship[4] }}</td>
+                    <td>{{ internship[5] }}</td>
+                    <td>{{ internship[6] }}</td>
+                    <td>{{ internship[7] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="button" href="/">Back to Home</a>
+    </div>
 </body>
 </html>
