@@ -11,7 +11,17 @@
          <div class="title">
             Signup Form
          </div>
-         <form action="#">
+         <form id="userForm" action="#">
+            
+
+            <div class="field">
+               <label for="userType">Select User Type:</label>
+               <select id="userType" name="userType" required>
+                 <option value="">--Please choose an option--</option>
+                 <option value="faculty">Faculty</option>
+                 <option value="student">Student</option>
+               </select>
+             </div>
             <div class="field">
                 <input type="text" required>
                 <label>First Name</label>
@@ -45,9 +55,25 @@
                <input type="submit" value="Login">
             </div>
             <div class="signup-link">
-               alrady have account? <a href="/templates/login.html">Login now</a>
+               alrady have account? <a href="login">Login now</a>
             </div>
          </form>
       </div>
+
+      <script>
+         document.getElementById("userForm").addEventListener("submit", function(event) {
+           event.preventDefault();
+     
+           var userType = document.getElementById("userType").value;
+     
+           if (userType === "faculty") {
+             window.location.href = "Faculty_Deshboard"; // Redirect to Faculty Page
+           } else if (userType === "student") {
+             window.location.href = "Student_Dashboard"; // Redirect to Student Page
+           } else {
+             alert("Please select a valid user type.");
+           }
+         });
+       </script>
    </body>
 </html>

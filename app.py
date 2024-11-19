@@ -24,7 +24,7 @@ def init_db():
 init_db()
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('landingpage.html')
 
 @app.route('/add_internship', methods=['GET', 'POST'])
 def add_internship():
@@ -60,6 +60,14 @@ def view_internships():
     conn.close()
 
     return render_template('view_internships.html', internships=internships)
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
