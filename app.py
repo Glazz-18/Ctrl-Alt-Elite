@@ -4,11 +4,9 @@ import os
 
 app = Flask(__name__)
 
-# Set the upload folder for the offer letters
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Ensure the upload folder exists
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
@@ -31,7 +29,6 @@ def init_db():
     conn.commit()
     conn.close()
 
-# Initialize the database
 init_db()
 
 @app.route('/')
