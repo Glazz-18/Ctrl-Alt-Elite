@@ -18,6 +18,8 @@
                     <th>Mentor Email</th>
                     <th>City</th>
                     <th>Stipend</th>
+                    <th>Offer Letter</th>
+                    <th>Dounload Offer Letter</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,11 +33,15 @@
                     <td>{{ internship[5] }}</td>
                     <td>{{ internship[6] }}</td>
                     <td>{{ internship[7] }}</td>
+                    <td>{{ internship[8] }}</td>
+                    <td>
+                        <a href="{{ internship[8] }}" download>Download Offer Letter</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <a class="button" href="/">Back to Home</a>
+        <a class="button" href="/faculty-dashboard">Back to Home</a>
     </div>
 </body>
 </html>

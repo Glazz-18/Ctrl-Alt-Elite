@@ -1,7 +1,16 @@
 from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
+import os
 
 app = Flask(__name__)
+
+# Set the upload folder for the offer letters
+UPLOAD_FOLDER = 'uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# Ensure the upload folder exists
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
 
 def init_db():
     conn = sqlite3.connect('internships.db')
@@ -15,13 +24,16 @@ def init_db():
             mentor_name TEXT NOT NULL,
             mentor_email TEXT NOT NULL,
             city TEXT NOT NULL,
-            stipend REAL
+            stipend REAL,
+            offer_letter TEXT NOT NULL
         )
     ''')
     conn.commit()
     conn.close()
 
+# Initialize the database
 init_db()
+
 @app.route('/')
 def index():
     return render_template('landingpage.html')
@@ -37,17 +49,25 @@ def add_internship():
         city = request.form['city']
         stipend = request.form['stipend']
 
-        # Save to database
+        if 'offer_letter' not in request.files:
+            return redirect(request.url)
+        file = request.files['offer_letter']
+        if file.filename == '':
+            return redirect(request.url)
+        
+        offer_letter_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        file.save(offer_letter_path)
+
         conn = sqlite3.connect('internships.db')
         cursor = conn.cursor()
         cursor.execute('''
-            INSERT INTO internships (intern_name, company_name, start_date, mentor_name, mentor_email, city, stipend)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        ''', (intern_name, company_name, start_date, mentor_name, mentor_email, city, stipend))
+            INSERT INTO internships (intern_name, company_name, start_date, mentor_name, mentor_email, city, stipend, offer_letter)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (intern_name, company_name, start_date, mentor_name, mentor_email, city, stipend, offer_letter_path))
         conn.commit()
         conn.close()
 
-        return redirect(url_for('view_internships'))
+        return redirect(url_for('student_dashboard'))
 
     return render_template('add_internship.html')
 
@@ -68,6 +88,14 @@ def login():
 @app.route('/signup')
 def signup():
     return render_template('signup.html')
+
+@app.route('/student-dashboard')
+def student_dashboard():
+    return render_template('Student_Dashboard.html')
+
+@app.route('/faculty-dashboard')
+def faculty_dashboard():
+    return render_template('Faculty_Deshboard.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

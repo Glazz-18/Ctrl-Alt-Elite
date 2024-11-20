@@ -1,79 +1,83 @@
 <!DOCTYPE html>
 <!-- Created By CodingNepal -->
 <html lang="en" dir="ltr">
-   <head>
-      <meta charset="utf-8">
-      <title>Signup Form</title>
-      <link rel="stylesheet" href="/static/login.css">
-   </head>
-   <body>
-      <div class="wrapper">
-         <div class="title">
-            Signup Form
-         </div>
-         <form id="userForm" action="#">
-            
 
-            <div class="field">
-               <label for="userType">Select User Type:</label>
-               <select id="userType" name="userType" required>
-                 <option value="">--Please choose an option--</option>
-                 <option value="faculty">Faculty</option>
-                 <option value="student">Student</option>
-               </select>
-             </div>
-            <div class="field">
-                <input type="text" required>
-                <label>First Name</label>
-             </div>
-            <div class="field">
-                <input type="text" required>
-                <label>Last Name</label>
-             </div>
-            <div class="field">
-               <input type="text" required>
-               <label>Email Address</label>
-            </div>
-            <div class="field">
-               <input type="password" required>
-               <label>Password</label>
-            </div>
-            <div class="field">
-               <input type="password" required>
-               <label>Confirm Password</label>
-            </div>
-            <div class="content">
-               <div class="checkbox">
-                  <input type="checkbox" id="remember-me">
-                  <label for="remember-me">Remember me</label>
-               </div>
-               <div class="pass-link">
-                  <a href="#">Forgot password?</a>
-               </div>
-            </div>
-            <div class="field">
-               <input type="submit" value="Login">
-            </div>
-            <div class="signup-link">
-               alrady have account? <a href="login">Login now</a>
-            </div>
-         </form>
+<head>
+   <meta charset="utf-8">
+   <title>Signup Form</title>
+   <link rel="stylesheet" href="/static/login.css">
+</head>
+
+<body>
+   <div class="wrapper">
+      <div class="title">
+         Signup Form
       </div>
+      <form id="userForm" action="#">
+         <div class="mydict">
+            <div>
+               <label>
+                  <input type="radio" name="role" value="student" checked>
+                  <span>Student</span>
+               </label>
+               <label>
+                  <input type="radio" name="role" value="faculty">
+                  <span>Faculty</span>
+               </label>
+            </div>
+         </div>
+         <div class="field">
+            <input type="text" class="inputfield" required>
+            <label>First Name</label>
+         </div>
+         <div class="field">
+            <input type="text" class="inputfield" required>
+            <label>Last Name</label>
+         </div>
+         <div class="field">
+            <input type="text" class="inputfield" required>
+            <label>Email Address</label>
+         </div>
+         <div class="field">
+            <input type="password" class="inputfield" required>
+            <label>Password</label>
+         </div>
+         <div class="field">
+            <input type="password" class="inputfield" required>
+            <label>Confirm Password</label>
+         </div>
+         <div class="content">
+            <div class="checkbox">
+               <input type="checkbox" class="inputfield" id="remember-me">
+               <label for="remember-me">Remember me</label>
+            </div>
+            <div class="pass-link">
+               <a href="#">Forgot password?</a>
+            </div>
+         </div>
+         <div class="field">
+            <input id="submitButton" type="submit" value="Login">
+         </div>
+         <div class="signup-link">
+            alrady have account? <a href="login">Login now</a>
+         </div>
+      </form>
+   </div>
 
-      <script>
-         document.getElementById("userForm").addEventListener("submit", function(event) {
-           event.preventDefault();
-     
-           var userType = document.getElementById("userType").value;
-     
-           if (userType === "faculty") {
-             window.location.href = "Faculty_Deshboard"; // Redirect to Faculty Page
-           } else if (userType === "student") {
-             window.location.href = "Student_Dashboard"; // Redirect to Student Page
-           } else {
-             alert("Please select a valid user type.");
-           }
-         });
-       </script>
-   </body>
+   <script>
+      document.getElementById('submitButton').addEventListener('click', function (event) {
+         event.preventDefault();
+
+         const role = document.querySelector('input[name="role"]:checked').value;
+
+         if (role === 'student') {
+            window.location.href = '/student-dashboard';
+         } else if (role === 'faculty') {
+            window.location.href = '/faculty-dashboard';
+         }
+      });
+   </script>
+
+</body>
+
 </html>

@@ -7,7 +7,7 @@
 <body>
     <h1>Add Internship</h1>
     <div class="container">
-        <form method="POST">
+        <form method="POST" action="/add_internship" enctype="multipart/form-data">
             <label for="intern_name">Intern Name:</label>
             <input type="text" id="intern_name" name="intern_name" required><br><br>
             
@@ -29,9 +29,13 @@
             <label for="stipend">Stipend:</label>
             <input type="number" id="stipend" name="stipend"><br><br>
             
-            <button type="submit">Add Internship</button>
+            <label for="Offer">Offer Letter:</label>
+            <div class="file-upload">
+                <input type="file" id="offer_letter" name="offer_letter" class="OfferLetter" required>
+                <label for="offer_letter" class="file-upload-label">Choose a file</label>
+            </div>
+            <button type="submit" >Add Internship</button>
         </form>
     </div>
 </body>
 </html>
-    
